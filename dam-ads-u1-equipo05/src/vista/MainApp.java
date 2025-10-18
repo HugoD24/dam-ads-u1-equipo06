@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.io.File;
 import java.nio.file.Path;
 
 public class MainApp extends Application {
@@ -30,9 +31,32 @@ public class MainApp extends Application {
         try {
      //      LLamo al mtodo de la lógica para cargar los datos del fichero
 
+            File fp = new File("pistas.dat");
+            File fs = new File("socio.dat");
+            File fr = new File("reservas.dat");
+            if(fp.exists()){
+            club.escribirFicheroPistas();
+            }
+            else{
+                club.leerFicheroPistas();
+            }
 
+            if(fs.exists()){
+                club.escribirFicheroSocio();
+            }
+            else{
+                club.leerFicheroPistas();
+            }
+
+            if(fr.exists()){
+                club.escribirFicheroReserva();
+            }
+            else{
+                club.leerFicheroPistas();
+            }
         } catch (Exception e) {
             e.printStackTrace();
+            showError("Error al cargar datos de pistas: " + e.getMessage());
         }
 
         root = new BorderPane();
