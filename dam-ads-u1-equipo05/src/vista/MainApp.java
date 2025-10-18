@@ -117,7 +117,7 @@ public class MainApp extends Application {
     @Override
     public void stop() throws Exception {
         try {
-         //   LLamo al método del modelo para guardar los datos
+         //   LLamo al metodo del modelo para guardar los datos
         } catch (Exception ignored) {}
         super.stop();
     }
