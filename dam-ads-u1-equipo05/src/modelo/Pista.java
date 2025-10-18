@@ -1,5 +1,7 @@
 package modelo;
 
+
+
 public class Pista {
     private final String idPista; // único, inmutable
     private String deporte;
@@ -7,7 +9,7 @@ public class Pista {
     private boolean disponible;
     // hola soy hugo
 
-//hola soy ignacio
+    //hola soy ignacio
 
     //esto deberia poder verse
     //esto es un cambio en main
