@@ -5,6 +5,7 @@ public class Pista {
     private String deporte;
     private String descripcion;
     private boolean disponible;
+    // hola soy hugo
 
     public Pista(String idPista, String deporte, String descripcion, boolean disponible) throws IdObligatorioException{
         if (idPista==null ||idPista.isEmpty()){
