@@ -8,6 +8,9 @@ public class Pista {
     // hola soy hugo
 
 //hola soy ignacio
+
+    //esto deberia poder verse
+
     public Pista(String idPista, String deporte, String descripcion, boolean disponible) throws IdObligatorioException{
         if (idPista==null ||idPista.isEmpty()){
             throw new IdObligatorioException("El id de la pista no puede ser vacío");
