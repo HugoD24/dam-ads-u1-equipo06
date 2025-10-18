@@ -10,6 +10,7 @@ public class Pista {
 //hola soy ignacio
 
     //esto deberia poder verse
+    //esto es un cambio en main
 
     public Pista(String idPista, String deporte, String descripcion, boolean disponible) throws IdObligatorioException{
         if (idPista==null ||idPista.isEmpty()){
