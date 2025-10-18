@@ -6,7 +6,7 @@ public class Pista {
     private String descripcion;
     private boolean disponible;
     // hola soy hugo
-
+    //hola soy borja
 //hola soy ignacio
 
     //esto deberia poder verse
