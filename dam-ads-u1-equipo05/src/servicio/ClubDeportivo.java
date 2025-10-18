@@ -32,10 +32,30 @@ public class ClubDeportivo {
     }
 
 
-    public void escribirFicheroBinario() throws IOException {
+    public void escribirFicheroSocio() throws IOException {
         FileOutputStream fos=new FileOutputStream(FICHERO_DATOS_SOCIOS);
         ObjectOutputStream oos=new ObjectOutputStream(fos);
         oos.writeObject(socios);
+
+        oos.close();
+        fos.close();
+
+    }
+
+    public void escribirFicheroPistas() throws IOException {
+        FileOutputStream fos=new FileOutputStream(FICHERO_DATOS_PISTA);
+        ObjectOutputStream oos=new ObjectOutputStream(fos);
+        oos.writeObject(pistas);
+
+        oos.close();
+        fos.close();
+
+    }
+
+    public void escribirFicheroReserva() throws IOException {
+        FileOutputStream fos=new FileOutputStream(FICHERO_DATOS_RESERVA);
+        ObjectOutputStream oos=new ObjectOutputStream(fos);
+        oos.writeObject(reservas);
 
         oos.close();
         fos.close();
