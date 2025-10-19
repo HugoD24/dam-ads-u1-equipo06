@@ -13,6 +13,7 @@ public class CancelarReservaView extends GridPane {
         setHgap(8); setVgap(8);
 
         ComboBox<Reserva> id = new ComboBox();
+        id.getItems().addAll(club.getReservas());
         Button cancelar = new Button("Cancelar reserva");
 
         addRow(0, new Label("Reserva"), id);
@@ -20,10 +21,22 @@ public class CancelarReservaView extends GridPane {
 
         cancelar.setOnAction(e -> {
             try {
-         //      club.cancelarReserva(id.getValue());
+                Reserva reservaSeleccionada = id.getValue();
+                if (reservaSeleccionada == null) {
+                    showError("Debes seleccionar una reserva.");
+                    return;
+                }
 
+                boolean ok = club.cancelarReserva(reservaSeleccionada);
+                if (ok) {
+                    club.escribirFicheroReserva();
+                    showInfo("Reserva cancelada correctamente.");
+                    id.getItems().remove(reservaSeleccionada);
+                } else {
+                    showError("No se pudo cancelar la reserva.");
+                }
             } catch (Exception ex) {
-                showError(ex.getMessage());
+                showError("Error al cancelar: " + ex.getMessage());
             }
         });
     }

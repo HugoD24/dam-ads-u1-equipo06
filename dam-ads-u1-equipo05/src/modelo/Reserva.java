@@ -74,4 +74,9 @@ public class Reserva implements Serializable {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
+    @Override
+    public String toString() {
+        return "ID: "+idReserva;
+    }
 }

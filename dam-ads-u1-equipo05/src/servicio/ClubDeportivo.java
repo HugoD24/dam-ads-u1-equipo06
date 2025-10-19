@@ -158,4 +158,8 @@ public class ClubDeportivo {
         return true;
     }
 
+    public boolean cancelarReserva(Reserva reserva) {
+        return reservas.remove(reserva);
+    }
+
 }
