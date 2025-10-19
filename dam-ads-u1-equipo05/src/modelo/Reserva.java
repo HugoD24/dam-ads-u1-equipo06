@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * @author ignacio
+ */
+
 public class Reserva implements Serializable {
     private final String idReserva; // único, inmutable
     private final String idSocio;
@@ -13,6 +17,17 @@ public class Reserva implements Serializable {
     private int duracionMin; // > 0
     private double precio;
 
+    /**
+     *
+     * @param idReserva
+     * @param idSocio
+     * @param idPista
+     * @param fecha
+     * @param horaInicio
+     * @param duracionMin
+     * @param precio
+     * @throws IdObligatorioException
+     */
     public Reserva(String idReserva, String idSocio, String idPista, LocalDate fecha, LocalTime horaInicio, int duracionMin, double precio) throws IdObligatorioException {
         if (idReserva == null || idReserva.isBlank()) throw new IdObligatorioException("idReserva obligatorio");
         if (idSocio == null || idSocio.isBlank()) throw new IdObligatorioException("idSocio obligatorio");

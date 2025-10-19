@@ -2,6 +2,10 @@ package modelo;
 
 import java.io.Serializable;
 
+/**
+ * @author ignacio
+ */
+
 public class Socio implements Serializable {
     private final String idSocio; // único, inmutable
     private String dni;

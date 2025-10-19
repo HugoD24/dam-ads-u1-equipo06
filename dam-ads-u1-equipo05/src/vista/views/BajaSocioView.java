@@ -3,6 +3,7 @@ package vista.views;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import modelo.Reserva;
 import servicio.ClubDeportivo;
 
 public class BajaSocioView extends GridPane {
@@ -24,6 +25,19 @@ public class BajaSocioView extends GridPane {
             String id = idField.getText().trim();
             if (id.isEmpty()) {
                 showError("Debes ingresar un ID.");
+                return;
+            }
+
+            boolean tieneReservas = false;
+            for (Reserva reserva : club.getReservas()) {
+                if (reserva.getIdSocio().equals(id)) {
+                    tieneReservas = true;
+                    break;
+                }
+            }
+
+            if (tieneReservas) {
+                showError("No se puede eliminar el socio. Tiene reservas activas.");
                 return;
             }
 

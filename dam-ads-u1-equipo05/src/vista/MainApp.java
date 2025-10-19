@@ -104,7 +104,7 @@ public class MainApp extends Application {
         reservas.getItems().addAll(crearReserva, cancelarReserva);
 
         Menu ver = new Menu("Ver");
-        MenuItem dashboard = new MenuItem("Dashboard");
+        MenuItem dashboard = new MenuItem("Registro");
         dashboard.setOnAction(e -> root.setCenter(new DashboardView(club)));
         ver.getItems().addAll(dashboard);
 

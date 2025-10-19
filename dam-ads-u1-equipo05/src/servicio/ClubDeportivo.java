@@ -122,11 +122,16 @@ public class ClubDeportivo {
 
     public boolean bajaSocio(String idSocio) {
         Socio socio = buscarSocioPorId(idSocio);
-        if (socio != null) {
+        if (socio == null){
+            return false;
+        }
+        for (Reserva reserva : reservas) {
+            if (reserva.getIdReserva().equals(idSocio)) {
+            return false;
+            }
+        }
             socios.remove(socio);
             return true;
-        }
-        return false;
     }
 
 

@@ -1,5 +1,8 @@
 package modelo;
 
+/**
+ * @author Ignacio
+ */
 
 import java.io.Serializable;
 
@@ -8,12 +11,15 @@ public class Pista implements Serializable {
     private String deporte;
     private String descripcion;
     private boolean disponible;
-    // hola soy hugo
 
-    //hola soy ignacio
-
-    //esto deberia poder verse
-    //esto es un cambio en main
+    /**
+     *
+     * @param idPista
+     * @param deporte
+     * @param descripcion
+     * @param disponible
+     * @throws IdObligatorioException
+     */
 
     public Pista(String idPista, String deporte, String descripcion, boolean disponible) throws IdObligatorioException{
         if (idPista==null ||idPista.isEmpty()){
