@@ -2,21 +2,21 @@ package servicio;
 
 import java.io.*;
 import java.util.ArrayList;
-
 import modelo.*;
 
 public class ClubDeportivo {
-    private  ArrayList<Socio> socios ;
-    private ArrayList<Pista> pistas ;
-    private ArrayList<Reserva> reservas ;
-    public final String FICHERO_DATOS_SOCIOS="socios.dat";
-    public final String FICHERO_DATOS_PISTA="pista.dat";
-    public final String FICHERO_DATOS_RESERVA="reservas.dat";
+    private ArrayList<Socio> socios;
+    private ArrayList<Pista> pistas;
+    private ArrayList<Reserva> reservas;
+
+    public final String FICHERO_DATOS_SOCIOS = "socios.dat";
+    public final String FICHERO_DATOS_PISTA = "pistas.dat";
+    public final String FICHERO_DATOS_RESERVA = "reservas.dat";
 
     public ClubDeportivo() {
-         socios = new ArrayList<>();
-         pistas = new ArrayList<>();
-         reservas = new ArrayList<>();
+        socios = new ArrayList<>();
+        pistas = new ArrayList<>();
+        reservas = new ArrayList<>();
     }
 
     public ArrayList<Socio> getSocios() {
@@ -31,68 +31,74 @@ public class ClubDeportivo {
         return reservas;
     }
 
-
     public void escribirFicheroSocio() throws IOException {
-        FileOutputStream fos=new FileOutputStream(FICHERO_DATOS_SOCIOS);
-        ObjectOutputStream oos=new ObjectOutputStream(fos);
-        oos.writeObject(socios);
-
-        oos.close();
-        fos.close();
-
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FICHERO_DATOS_SOCIOS))) {
+            oos.writeObject(socios);
+        }
     }
 
     public void escribirFicheroPistas() throws IOException {
-        FileOutputStream fos=new FileOutputStream(FICHERO_DATOS_PISTA);
-        ObjectOutputStream oos=new ObjectOutputStream(fos);
-        oos.writeObject(pistas);
-
-        oos.close();
-        fos.close();
-
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FICHERO_DATOS_PISTA))) {
+            oos.writeObject(pistas);
+        }
     }
 
     public void escribirFicheroReserva() throws IOException {
-        FileOutputStream fos=new FileOutputStream(FICHERO_DATOS_RESERVA);
-        ObjectOutputStream oos=new ObjectOutputStream(fos);
-        oos.writeObject(reservas);
-
-        oos.close();
-        fos.close();
-
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FICHERO_DATOS_RESERVA))) {
+            oos.writeObject(reservas);
+        }
     }
 
-
     public void leerFicheroSocios() throws IOException, ClassNotFoundException {
-        FileInputStream fis=new FileInputStream(FICHERO_DATOS_SOCIOS);
-        ObjectInputStream ois=new ObjectInputStream(fis);
-        socios=(ArrayList<Socio>) ois.readObject();
+        File f = new File(FICHERO_DATOS_SOCIOS);
+        if (!f.exists()) {
+            socios = new ArrayList<>();
+            return;
+        }
 
-        ois.close();
-        fis.close();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f))) {
+            socios = (ArrayList<Socio>) ois.readObject();
+        }
     }
 
     public void leerFicheroPistas() throws IOException, ClassNotFoundException {
-        FileInputStream fis=new FileInputStream(FICHERO_DATOS_PISTA);
-        ObjectInputStream ois=new ObjectInputStream(fis);
-        pistas=(ArrayList<Pista>) ois.readObject();
+        File f = new File(FICHERO_DATOS_PISTA);
+        if (!f.exists()) {
+            pistas = new ArrayList<>();
+            return;
+        }
 
-        ois.close();
-        fis.close();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f))) {
+            pistas = (ArrayList<Pista>) ois.readObject();
+        }
     }
 
     public void leerFicheroReservas() throws IOException, ClassNotFoundException {
-        FileInputStream fis=new FileInputStream(FICHERO_DATOS_RESERVA);
-        ObjectInputStream ois=new ObjectInputStream(fis);
-        reservas=(ArrayList<Reserva>) ois.readObject();
+        File f = new File(FICHERO_DATOS_RESERVA);
+        if (!f.exists()) {
+            reservas = new ArrayList<>();
+            return;
+        }
 
-        ois.close();
-        fis.close();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f))) {
+            reservas = (ArrayList<Reserva>) ois.readObject();
+        }
     }
 
+    public Socio buscarSocioPorId(String idSocio) {
+        for (Socio socio : socios) {
+            if (socio.getIdSocio().equals(idSocio)) {
+                return socio;
+            }
+        }
+        return null;
+    }
 
     public boolean altaSocio(Socio socio) {
-
-        return socios.add(socio);
+        if (buscarSocioPorId(socio.getIdSocio()) != null) {
+            return false; // Ya existe un socio con ese ID
+        }
+        socios.add(socio);
+        return true;
     }
 }

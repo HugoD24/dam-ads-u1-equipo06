@@ -1,9 +1,10 @@
 package modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Reserva {
+public class Reserva implements Serializable {
     private final String idReserva; // único, inmutable
     private final String idSocio;
     private final String idPista;

@@ -9,6 +9,8 @@ import javafx.scene.layout.GridPane;
 import java.util.function.Consumer;
 
 public class SocioFormView extends GridPane {
+
+
     public SocioFormView(ClubDeportivo club) {
         setPadding(new Insets(12));
         setHgap(8);
@@ -33,8 +35,8 @@ public class SocioFormView extends GridPane {
         crear.setOnAction(e -> {
             try {
                 boolean ok=true;
-                //   ok= club.altaSocio(new Socio(id.getText(), dni.getText(), nombre.getText(), apellidos.getText(), tel.getText(), email.getText()));
-               if (ok) showInfo("Socio insertado correctametne");
+                ok= club.altaSocio(new Socio(id.getText(), dni.getText(), nombre.getText(), apellidos.getText(), tel.getText(), email.getText()));
+                if (ok) showInfo("Socio insertado correctametne");
                 else showError("Socio no inertado correctamente");
             } catch (Exception ex) {
                 showError(ex.getMessage());

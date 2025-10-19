@@ -26,12 +26,16 @@ public class MainApp extends Application {
     private Label status;
 
 
-    File fp = new File("pistas.dat");
-    File fs = new File("socio.dat");
-    File fr = new File("reservas.dat");
+
+
+
     @Override
     public void start(Stage stage) throws Exception {
+
         club = new ClubDeportivo();
+        File fp = new File(club.FICHERO_DATOS_PISTA);
+        File fs = new File(club.FICHERO_DATOS_SOCIOS);
+        File fr = new File(club.FICHERO_DATOS_RESERVA);
         try {
 
             //LLamo al métoodo de la lógica para cargar los datos del fichero

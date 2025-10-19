@@ -1,6 +1,8 @@
 package modelo;
 
-public class Socio {
+import java.io.Serializable;
+
+public class Socio implements Serializable {
     private final String idSocio; // único, inmutable
     private String dni;
     private String nombre;

@@ -1,8 +1,9 @@
 package modelo;
 
 
+import java.io.Serializable;
 
-public class Pista {
+public class Pista implements Serializable {
     private final String idPista; // único, inmutable
     private String deporte;
     private String descripcion;
