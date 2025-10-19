@@ -110,14 +110,25 @@ public class MainApp extends Application {
             try {
                 //    LLamo al metodo del modelo para guardar los datos en fichero
 
+
+                club.escribirFicheroPistas();
+                club.escribirFicheroSocio();
+                club.escribirFicheroReserva();
+                showInfo("Datos guardados correctamente.");
             } catch (Exception ex) {
                 showError("Error guardando: " + ex.getMessage());
             }
         });
+
+
         MenuItem salir = new MenuItem("Salir");
         salir.setOnAction(e -> {
             try {
                 //Lammo al metodo del modelo para guardar antes de salir
+
+                club.escribirFicheroPistas();
+                club.escribirFicheroSocio();
+                club.escribirFicheroReserva();
             } catch (Exception ignored) {}
             Platform.exit();
         });
@@ -145,6 +156,11 @@ public class MainApp extends Application {
     public void stop() throws Exception {
         try {
             //   LLamo al metodo del modelo para guardar los datos
+
+            club.escribirFicheroPistas();
+            club.escribirFicheroSocio();
+            club.escribirFicheroReserva();
+
         } catch (Exception ignored) {}
         super.stop();
     }

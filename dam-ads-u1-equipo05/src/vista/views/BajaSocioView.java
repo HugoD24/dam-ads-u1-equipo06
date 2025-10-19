@@ -20,7 +20,7 @@ public class BajaSocioView extends GridPane {
         add(baja, 1, 1);
 
         baja.setOnAction(e -> {
-        //LLamar al metodo del modelo para dar de baja  a un socio.
+
         });
     }
 
