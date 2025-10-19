@@ -29,8 +29,8 @@ public class PistaFormView extends GridPane {
             try {
                 boolean ok=true;
                 ok=club.altaPista(new Pista(id.getText(), deporte.getText(), descripcion.getText(), disponible.isSelected()));
-                if (ok) showInfo("Pista insertado correctametne");
-                else showError("Pista no inertado correctamente");
+                if (ok) showInfo("Pista insertada correctametne");
+                else showError("Pista no inertada correctamente");
             } catch (Exception ex) {
                 showError(ex.getMessage());
             }

@@ -67,4 +67,9 @@ public class Socio implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "ID:" +idSocio + " -Nombre: " + nombre + " " + apellidos;
+    }
 }

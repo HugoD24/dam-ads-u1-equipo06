@@ -6,27 +6,50 @@ import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
-import java.util.function.Consumer;
-
 public class CambiarDisponibilidadView extends GridPane {
+
     public CambiarDisponibilidadView(ClubDeportivo club) {
         setPadding(new Insets(12));
-        setHgap(8); setVgap(8);
+        setHgap(8);
+        setVgap(8);
 
-        ComboBox<Pista> id = new ComboBox();
-        CheckBox disponible = new CheckBox("Disponible");
-        Button cambiar = new Button("Aplicar");
+        ComboBox<Pista> idCombo = new ComboBox<>();
+        idCombo.getItems().addAll(club.getPistas()); // Cargar pistas
 
-        addRow(0, new Label("idPista"), id);
-        addRow(1, new Label("Estado"), disponible);
-        add(cambiar, 1, 2);
+        CheckBox disponibleCheck = new CheckBox("Disponible");
+        Button cambiarBtn = new Button("Aplicar");
 
-        cambiar.setOnAction(e -> {
-            try {
-          //     club.cambiarDisponibilidadPista(id.getText(), disponible.isSelected());
+        addRow(0, new Label("Pista"), idCombo);
+        addRow(1, new Label("Estado"), disponibleCheck);
+        add(cambiarBtn, 1, 2);
 
-            } catch (Exception ex) {
-                showError(ex.getMessage());
+        // Mostrar disponibilidad actual al seleccionar pista
+        idCombo.setOnAction(e -> {
+            Pista seleccionada = idCombo.getValue();
+            if (seleccionada != null) {
+                disponibleCheck.setSelected(seleccionada.isDisponible());
+            }
+        });
+
+        cambiarBtn.setOnAction(e -> {
+            Pista seleccionada = idCombo.getValue();
+            if (seleccionada == null) {
+                showError("Debes seleccionar una pista.");
+                return;
+            }
+
+            boolean nuevaDisponibilidad = disponibleCheck.isSelected();
+            boolean cambiado = club.cambiarDisponibilidadPista(seleccionada.getIdPista(), nuevaDisponibilidad);
+
+            if (cambiado) {
+                try {
+                    club.escribirFicheroPistas(); // Guardar cambios
+                    showInfo("Disponibilidad actualizada correctamente.");
+                } catch (Exception ex) {
+                    showError("Error al guardar cambios: " + ex.getMessage());
+                }
+            } else {
+                showError("No se pudo cambiar la disponibilidad.");
             }
         });
     }
@@ -36,6 +59,7 @@ public class CambiarDisponibilidadView extends GridPane {
         a.setHeaderText("Error");
         a.showAndWait();
     }
+
     private void showInfo(String msg) {
         Alert a = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
         a.setHeaderText(null);

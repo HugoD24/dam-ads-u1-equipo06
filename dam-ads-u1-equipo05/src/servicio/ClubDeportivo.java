@@ -103,6 +103,15 @@ public class ClubDeportivo {
         return null;
     }
 
+    public Reserva buscarReservaPorId(String idReserva) {
+        for (Reserva reserva : reservas) {
+            if (reserva.getIdReserva().equals(idReserva)) {
+                return reserva;
+            }
+        }
+        return null;
+    }
+
     public boolean altaSocio(Socio socio) {
         if (buscarSocioPorId(socio.getIdSocio()) != null) {
             return false; // Ya existe un socio con ese ID
@@ -129,4 +138,24 @@ public class ClubDeportivo {
         pistas.add(pista);
         return true;
     }
+
+
+    public boolean cambiarDisponibilidadPista(String idPista, boolean disponible) {
+        for (Pista pista : pistas) {
+            if (pista.getIdPista().equals(idPista)) {
+                pista.setDisponible(disponible);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean crearReserva(Reserva reserva) {
+        if (buscarReservaPorId(reserva.getIdReserva()) != null) {
+            return false; //lo mismo si ya existe.
+        }
+        reservas.add(reserva);
+        return true;
+    }
+
 }
