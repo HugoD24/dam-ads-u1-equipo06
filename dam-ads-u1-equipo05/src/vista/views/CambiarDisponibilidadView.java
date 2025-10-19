@@ -6,6 +6,13 @@ import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
+/**
+ * Vista que permite cambiar la disponibilidad de una pista.
+ *  La vista solicita el ID de pista antes de cambiar la disponibilidad
+ * Muestra mensajes informativos o de error según el resultado de la operación.
+ * @author ignacio
+ */
+
 public class CambiarDisponibilidadView extends GridPane {
 
     public CambiarDisponibilidadView(ClubDeportivo club) {
@@ -54,12 +61,20 @@ public class CambiarDisponibilidadView extends GridPane {
         });
     }
 
+    /**
+     * Muestra la informacion
+     * @param msg
+     */
     private void showError(String msg) {
         Alert a = new Alert(Alert.AlertType.ERROR, msg, ButtonType.OK);
         a.setHeaderText("Error");
         a.showAndWait();
     }
 
+    /**
+     * Muestra el mensaje de error
+     * @param msg "Error"
+     */
     private void showInfo(String msg) {
         Alert a = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
         a.setHeaderText(null);

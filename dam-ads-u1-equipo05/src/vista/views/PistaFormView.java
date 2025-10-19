@@ -8,6 +8,12 @@ import javafx.scene.layout.GridPane;
 
 import java.util.function.Consumer;
 
+
+/**
+ * Vista que permite el alta de una pista.
+ * Muestra mensajes informativos o de error según el resultado de la operación.
+ * @author ignacio
+ */
 public class PistaFormView extends GridPane {
     public PistaFormView(ClubDeportivo club) {
         setPadding(new Insets(12));
@@ -37,11 +43,21 @@ public class PistaFormView extends GridPane {
         });
     }
 
+    /**
+     * Muestra la informacion
+     * @param msg
+     */
+
     private void showError(String msg) {
         Alert a = new Alert(Alert.AlertType.ERROR, msg, ButtonType.OK);
         a.setHeaderText("Error");
         a.showAndWait();
     }
+
+    /**
+     * Muestra el mensaje de error
+     * @param msg "Error"
+     */
     private void showInfo(String msg) {
         Alert a = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
         a.setHeaderText(null);

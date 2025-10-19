@@ -9,6 +9,12 @@ import javafx.scene.layout.GridPane;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Vista que permite realizar una reserva.
+ * Muestra mensajes informativos o de error según el resultado de la operación.
+ * @author ignacio
+ */
+
 public class ReservaFormView extends GridPane {
     public ReservaFormView(ClubDeportivo club) {
         setPadding(new Insets(12));
@@ -84,11 +90,22 @@ public class ReservaFormView extends GridPane {
         duracion.getValueFactory().setValue(60);
     }
 
+    /**
+     * Muestra la informacion
+     * @param msg
+     */
+
     private void showError(String msg) {
         Alert a = new Alert(Alert.AlertType.ERROR, msg, ButtonType.OK);
         a.setHeaderText("Error");
         a.showAndWait();
     }
+
+
+    /**
+     * Muestra el mensaje de error
+     * @param msg "Error"
+     */
 
     private void showInfo(String msg) {
         Alert a = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
