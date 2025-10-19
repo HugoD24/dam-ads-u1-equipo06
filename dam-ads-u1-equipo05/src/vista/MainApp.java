@@ -1,6 +1,5 @@
 package vista;
 
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -17,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.File;
+import java.lang.classfile.Label;
 import java.nio.file.Path;
 
 public class MainApp extends Application {
@@ -25,45 +25,46 @@ public class MainApp extends Application {
     private BorderPane root;
     private Label status;
 
+
+    File fp = new File("pistas.dat");
+    File fs = new File("socio.dat");
+    File fr = new File("reservas.dat");
     @Override
     public void start(Stage stage) throws Exception {
         club = new ClubDeportivo();
         try {
-     //      LLamo al mtodo de la lógica para cargar los datos del fichero
 
-            File fp = new File("pistas.dat");
-            File fs = new File("socio.dat");
-            File fr = new File("reservas.dat");
+            //LLamo al métoodo de la lógica para cargar los datos del fichero
+
             if(fp.exists()){
-            club.escribirFicheroPistas();
+                club.leerFicheroPistas();
             }
             else{
-                club.leerFicheroPistas();
+                club.escribirFicheroPistas();
             }
 
             if(fs.exists()){
-                club.escribirFicheroSocio();
+                club.leerFicheroSocios();
             }
             else{
-                club.leerFicheroPistas();
+                club.escribirFicheroSocio();
             }
 
             if(fr.exists()){
-                club.escribirFicheroReserva();
+                club.leerFicheroReservas();
             }
             else{
-                club.leerFicheroPistas();
+
+                club.escribirFicheroReserva();
             }
         } catch (Exception e) {
             e.printStackTrace();
             showError("Error al cargar datos de pistas: " + e.getMessage());
         }
 
+
         root = new BorderPane();
         root.setTop(buildMenuBar());
-        status = new Label("Listo");
-        status.setPadding(new Insets(4));
-        root.setBottom(status);
 
         // Vista por defecto
         root.setCenter(new DashboardView(club));
@@ -107,7 +108,7 @@ public class MainApp extends Application {
         MenuItem guardar = new MenuItem("Guardar");
         guardar.setOnAction(e -> {
             try {
-            //    LLamo al metodo del modelo para guardar los datos en fichero
+                //    LLamo al metodo del modelo para guardar los datos en fichero
 
             } catch (Exception ex) {
                 showError("Error guardando: " + ex.getMessage());
@@ -143,7 +144,7 @@ public class MainApp extends Application {
     @Override
     public void stop() throws Exception {
         try {
-         //   LLamo al metodo del modelo para guardar los datos
+            //   LLamo al metodo del modelo para guardar los datos
         } catch (Exception ignored) {}
         super.stop();
     }
