@@ -6,6 +6,13 @@ import javafx.scene.layout.GridPane;
 import modelo.Reserva;
 import servicio.ClubDeportivo;
 
+/**
+ * Vista que permite eliminar un socio del sistema.
+ *  La vista solicita el ID del socio a eliminar y verifica si tiene reservas activas
+ *  antes de permitir su eliminación.
+ * Muestra mensajes informativos o de error según el resultado de la operación.
+ * @author ignacio
+ */
 public class BajaSocioView extends GridPane {
 
     public BajaSocioView(ClubDeportivo club) {
@@ -50,11 +57,21 @@ public class BajaSocioView extends GridPane {
         });
     }
 
+    /**
+     * Muestra la informacion
+     * @param msg
+     */
+
     private void showError(String msg) {
         Alert a = new Alert(Alert.AlertType.ERROR, msg, ButtonType.OK);
         a.setHeaderText("Error");
         a.showAndWait();
     }
+
+    /**
+     * Muestra el mensaje de error
+     * @param msg "Error"
+     */
 
     private void showInfo(String msg) {
         Alert a = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);

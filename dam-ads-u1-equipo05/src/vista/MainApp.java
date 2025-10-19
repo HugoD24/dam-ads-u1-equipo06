@@ -19,6 +19,15 @@ import java.io.File;
 import java.lang.classfile.Label;
 import java.nio.file.Path;
 
+/**
+ * @author ignacio
+ */
+
+/**
+ * La clase main va llamar a las diversas funciones del ClubDeportivo
+ * Tambien se encarga del menu.
+ * @disclaimer voy a obvias las explicaciones sobre le menu y diversas funciones dadas por la profesora.
+ */
 public class MainApp extends Application {
 
     private ClubDeportivo club;
@@ -26,9 +35,11 @@ public class MainApp extends Application {
     private Label status;
 
 
-
-
-
+    /**
+     *
+     * @param stage El escenario donde se mostrará la interfaz.
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -114,7 +125,6 @@ public class MainApp extends Application {
             try {
                 //    LLamo al metodo del modelo para guardar los datos en fichero
 
-
                 club.escribirFicheroPistas();
                 club.escribirFicheroSocio();
                 club.escribirFicheroReserva();
@@ -143,6 +153,10 @@ public class MainApp extends Application {
     }
 
 
+    /**
+     * Muestra la informacion
+     * @param msg
+     */
 
     public void showInfo(String msg) {
         Alert a = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
@@ -150,12 +164,23 @@ public class MainApp extends Application {
         a.showAndWait();
     }
 
+    /**
+     * Muestra el mensaje de error
+     * @param msg "Error"
+     */
+
     public void showError(String msg) {
         Alert a = new Alert(Alert.AlertType.ERROR, msg, ButtonType.OK);
         a.setHeaderText("Error");
         a.showAndWait();
     }
 
+    /**
+     * Metodo que se ejecuta automáticamente cuando la aplicación se cierra.
+     * Guarda los datos actuales del club
+     * Se llama automáticamente al cerrar la ventana principal de la aplicación.
+     * @throws Exception
+     */
     @Override
     public void stop() throws Exception {
         try {

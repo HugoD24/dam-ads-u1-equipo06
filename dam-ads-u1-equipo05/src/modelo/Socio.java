@@ -14,6 +14,16 @@ public class Socio implements Serializable {
     private String telefono;
     private String email;
 
+    /**
+     *
+     * @param idSocio
+     * @param dni
+     * @param nombre
+     * @param apellidos
+     * @param telefono
+     * @param email
+     * @throws IdObligatorioException
+     */
 
     public Socio(String idSocio, String dni, String nombre, String apellidos, String telefono, String email) throws IdObligatorioException {
         if (idSocio==null ||idSocio.isEmpty()){
